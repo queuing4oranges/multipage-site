@@ -15,3 +15,9 @@ nav a {
   color: #333;
   padding: 4px 10px;
 }
+
+nav a.active{
+  color:white;
+  background:lightcoral;
+  text-decoration: none;
+}
