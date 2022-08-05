@@ -21,7 +21,7 @@ export const useFetch = (url) =>{
             if(!response.ok){
                 throw new Error(response.statusText)
             }                                        
-            console.log(response)
+
             const json = await response.json()      //next we need to update our state:
             
             setIsPending(false)            
@@ -32,8 +32,9 @@ export const useFetch = (url) =>{
 
             if (err.name === "AbortError"){         //here we're defining the abort error
                 console.log("The fetch was aborted.")
-                }else{            setError('Could not fetch the data')
+                }else{            
                 setIsPending(false)
+                setError('Could not fetch the data')
                 console.log(err.message)                //err has a message property
                 }               
             }              
@@ -41,12 +42,14 @@ export const useFetch = (url) =>{
         }                                           //so far fct is created, but not invoked - that's what we need to do here:
 
         fetchData()
+
         return () =>{                               //in this fct we will abort any fetch requests if there is an error
             controller.abort()                      //this method
         }
+        
     }, [url])
 
-    return { data: data, isPending, error}                             //we're returning here an object, so a data property which is using the data state
+    return { data, isPending, error}                             //we're returning here an object, so a data property which is using the data state
                                                     //we could actually shorten this to { data }
 }
 
