@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Article from './pages/Article';
 
 
 function App() {
@@ -21,17 +22,23 @@ function App() {
 
       </nav>
       <Switch>
+
         <Route exact path="/">
           <Home />
         </Route>
 
-        <Route exact path="/about">
+        <Route path="/about">
           <About />
         </Route>
 
-        <Route>
-          <Contact exact path="/contact"/>
+        <Route path="/contact">
+          <Contact />
         </Route>
+
+        <Route path="/articles/:id">
+          <Article />
+       </Route>
+
       </Switch>
       </BrowserRouter>
     </div>
